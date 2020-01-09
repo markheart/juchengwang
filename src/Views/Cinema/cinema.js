@@ -3,6 +3,7 @@ import style from './cinema.module.scss'
 import { connect } from 'react-redux'
 import  getcinema from '../../Redux/Actions/cinemalist'
 import Cinemaitem from '../../Components/CinemaItem/Cinemaitem'
+import { NavLink } from 'react-router-dom'
 
 class Cinema extends Component {
   

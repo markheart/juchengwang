@@ -1,6 +1,6 @@
 import Axios from "axios"
 
-const getcinema=()=>{
+export const getcinema=()=>{
   return Axios({
     url:"https://api.juooo.com/theatre/index/getTheatreList?page=1&version=6.0.9&referer=2",
   }).then(res=>{
@@ -11,4 +11,4 @@ const getcinema=()=>{
   })
 }
 
-export default getcinema
+

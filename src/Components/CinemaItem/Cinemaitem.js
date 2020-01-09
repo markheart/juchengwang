@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import { withRouter, NavLink } from 'react-router-dom'
 import style from './cinemaitem.module.scss'
 import MySwiper from '../Swiper/swiper'
+import { withRouter } from 'react-router-dom'
 class Cinemaitem extends Component {
   //该页面获取cinema数据(this.props.data)
   render() {
-    console.log(this.props.data)
     return (
       <div id={style.cinemaitem}>
         {/* --------------------------------------组件title ---------------------------------*/}
@@ -57,8 +56,9 @@ class Cinemaitem extends Component {
   }
 
   tolistpage = (listid) => {
-    console.log(listid)
+    this.props.history.push(`/cinemalist/${listid}`)
   }
 }
 
-export default withRouter(Cinemaitem)
+export default withRouter( Cinemaitem )
+

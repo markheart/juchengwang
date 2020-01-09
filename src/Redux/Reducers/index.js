@@ -5,7 +5,7 @@ import cinemaReducer from './cinemaReducer'
 const reducer = combineReducers({
     tabbarReducer,
     CitylistReducer,
-    cinemaReducer
+    cinemaReducer,
 })
 
 export default reducer

@@ -6,6 +6,7 @@ class App extends Component{
   
   render(){
     return <div>
+      <title>{this.props.showTitle}</title>
       {
         this.props.isShow?<Tabbar/>:null
       }
@@ -18,7 +19,8 @@ class App extends Component{
 }
 const mapStateToProps = (state)=>{
   return{
-    isShow:state.tabbarReducer
+    isShow:state.tabbarReducer,
+    showTitle:state.pageTitleReducer
   }
 }
 export default connect(mapStateToProps)(App);

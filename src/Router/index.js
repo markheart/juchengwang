@@ -9,6 +9,7 @@ import App from '../App'
 import Home from '../Views/Home/home'
 import Detail from '../Views/Detail/detail'
 import City from '../Views/City/city'
+import ShowsLibrary from '../Views/ShowsLibrary/showsLibrary'
 import Cinema from '../Views/Cinema/cinema'
 import MyCenter from '../Views/MyCenter/mycenter'
 import Login from '../Views/Login/login'
@@ -23,6 +24,9 @@ const router = (
           <Route path='/home/:cityid' render={()=>
               <Home></Home>
           }/>
+          <Route path='/showsLibrary' render={()=>
+              <ShowsLibrary></ShowsLibrary>
+          } exact/>
           <Route path='/cinema' component={Cinema}/>
           <Route path='/center' component={MyCenter}/>
           <Route path='/login' component={Login}/>

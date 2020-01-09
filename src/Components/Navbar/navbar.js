@@ -7,16 +7,18 @@ class MyNavbar extends Component{
 
     state = {
         hotcitylist:[],
-        sortedCityList:[]
+        sortedCityList:[],
+        allcity:''
     }
 
-    componentDidMount() {
-        // console.log(this.props)
+    componentWillMount() {
+        // console.log(this.props.match.params.cityid)
         Axios.get('https://api.juooo.com/city/city/getSortedCityList?version=6.0.9&referer=2')
         .then(res => {
             // console.log(res.data.data)
             this.setState({
-                sortedCityList: res.data.data
+                sortedCityList: res.data.data,
+                allcity:this.props.match.params.cityid
             })
         })
     }
@@ -28,8 +30,8 @@ class MyNavbar extends Component{
                     <div className={style.city} onClick={ this.handleClick }>
                         <i className="iconfont icon-icon_gps_fill"></i>
                         <p>
-                            {
-                                this.props.myCity
+                            {   
+                                this.state.allcity === 0?'全国':this.props.myCity
                             }
                         </p>
                     </div>

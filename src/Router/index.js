@@ -35,7 +35,7 @@ const router = (
           <Route path='/eticket' render={()=>
             localStorage.getItem('token')?<Eticket/>:<Redirect to='/login'/>
           }/>
-          <Redirect from='/*' to='/home/5' exact></Redirect>
+          <Redirect from='/*' to='/home/0' exact></Redirect>
           <Redirect to='/error'></Redirect>
         </Switch>
       </App>

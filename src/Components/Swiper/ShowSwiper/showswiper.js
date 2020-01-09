@@ -1,9 +1,10 @@
 import React,{Component} from 'react'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
+import './show.scss'
 class MySwiper extends Component{
     render(){
-        return <div className="swiper-container MySwiper">
+        return <div className="swiper-container ShowSwiper">
             <div className="swiper-wrapper">
                 {this.props.children}
             </div>
@@ -11,14 +12,9 @@ class MySwiper extends Component{
         </div>
     }
     componentDidMount() {
-        new Swiper(".MySwiper", 
+        new Swiper(".ShowSwiper", 
             {
-                loop:true,
-                autoplay:true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                }
+                slidesPerView: 'auto',
             }
         )
     }

@@ -29,15 +29,11 @@ class Cinemaitem extends Component {
                 }}>
           {
             this.props.data.showList.map(item=>
-              if(item.length > 0){
-                <div className="swiper-slide" key={item.id}>
-                  <img src={item.pic} alt={item.schedular_name} className={style.swiperitem}/>
-                </div>
-              }
+              <div className="swiper-slide" key={item.id}>
+                <img src={item.pic} alt={item.schedular_name} className={style.swiperitem}/>
+              </div>
               )
-
           }
-          
         </MySwiper>
       </div>
     )

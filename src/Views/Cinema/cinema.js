@@ -20,7 +20,7 @@ class Cinema extends Component {
       <div id={style.cinema}>
         <h2 className={style.title}>剧院</h2>
         {this.props.cinemalist.map(item=>
-          <Cinemaitem data={item} key={item.id}/>
+        item.showList.length ? <Cinemaitem data={item} key={item.id}/> : null
         )}
       </div>
     )

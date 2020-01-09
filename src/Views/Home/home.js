@@ -50,10 +50,6 @@ class Home extends Component {
                 {
                     loop:true,
                     autoplay:true,
-                    pagination: {
-                        el: '.swiper-pagination',
-                        clickable: true,
-                    }
                 }
             }>
                 {

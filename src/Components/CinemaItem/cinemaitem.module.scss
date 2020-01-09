@@ -1,0 +1,53 @@
+#cinemaitem{
+  border:1px solid #eeeeee;
+  border-radius: 2px;
+  margin:0.14rem;
+  padding:0.16rem;
+  position: relative;
+  h2{
+    position: relative;
+    display: flex;
+    .morecont{
+      color: green;
+      position: absolute;
+      right: 0;
+      top:50%;
+      transform: translate(0,-50%);
+      font-size:20px;
+    }
+    img{
+      width: 0.5rem;
+      height: 0.5rem;
+      border-radius: 3px;
+      margin-right: 0.1rem;
+    }
+    p{
+      width: 77%;
+      position: relative;
+      padding-top:7px;
+      span{
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+        &:nth-of-type(1){
+          width: 100%;
+          font-weight: bold;
+          font-size: 0.16rem;
+          color: #000; 
+          margin-bottom: 3px;
+          overflow: hidden;
+        }
+        &:nth-of-type(2){
+          font-weight: 200;
+          font-size:0.1rem;
+          color:#919191 ;
+        }
+    }
+    }
+    
+  }
+  .swiperitem{
+    width: 1.08rem;
+    height: 1.47rem;
+  }
+}

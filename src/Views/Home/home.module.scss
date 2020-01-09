@@ -1,5 +1,180 @@
-.banner_img{
-    width: 100%;
+.banner_box{
+    width: 3.46rem;
+    height: 1.4rem;
+    overflow: hidden;
+    border-radius: 0.08rem;
+    margin: 0 auto;
+    margin-top: 0.12rem;
+        /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet{
+            background:#fff;
+            opacity: 0.6;
+            border-radius: 0;
+            width: 0.06rem;
+            height: 0.06rem;
+        }
+        /deep/ .swiper-pagination-bullets /deep/.swiper-pagination-bullet-active{
+            background:#fff;
+            border-radius: 0;
+            width: 0.15rem;
+            height: 0.06rem;
+            opacity: 1;
+        }
+    .banner_img{
+        width: 100%;
+    }
+}
+
+.nav{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 3.46rem;
+    margin-top: 0.08rem;
+    li{
+        width: 0.66rem;
+        text-align: center;
+        margin-bottom: 0.18rem;
+        span{
+            font-size: 0.14rem;
+            color: #7b7b7b;
+        }
+        img{
+            height: 0.34rem;
+            margin: 0 auto;
+            margin-bottom: 0.08rem;
+        }
+    }
+}
+
+.Vip1{
+    width: 3.48rem;
+    height: 0.43rem;
+    background: #fffcf6;
+    border: 1px solid #f2e8db;
+    border-radius: 0.04rem;
+    display: flex;
+    margin: 0 auto;
+    align-items: center;
+    padding: 0 0.14rem;
+    i{
+        font-size: 0.18rem;
+        color: #eacfb0;
+        margin-right: 0.07rem;
+    }
+    p{
+        font-size: 0.12rem;
+        color: #b4a28e;
+    }
+    .Vip_cost{
+        display: flex;
+        justify-content: space-between;
+        margin-left: 1.3rem;
+        align-items: center;
+        i{
+            font-size: 0.14rem;
+        }
+    }
+}
+
+.hot_list{
+    .hot_list_title{
+        display: flex;
+        justify-content: space-between;
+        width: 3.46rem;
+        margin: 0 auto;
+        margin-top: 0.33rem;
+        align-items: center;
+        margin-bottom: 0.2rem;
+        h2{
+            font-size: 0.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        i{
+            font-size: 0.1rem;
+            color: #939393;
+        }
+    }
+    .hot_list_item{
+        margin-left: 0.13rem;
+        .swiper_box{
+            width: 1.09rem;
+            .swiper_box_img{
+                width: 1.1rem;
+                height: 1.48rem;
+                border-radius: 0.04rem;
+                overflow: hidden;
+                margin-bottom: 0.13rem;
+                img{
+                    width: 100%;
+                }
+            }
+            h3{
+                font-size: 0.14rem;
+                color: #3a3a3a;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                word-break: break-all;
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+            }
+        }
+    }
+}
+
+.show_list{
+    .show_list_title{
+        display: flex;
+        justify-content: space-between;
+        width: 3.46rem;
+        margin: 0 auto;
+        margin-top: 0.33rem;
+        align-items: center;
+        margin-bottom: 0.2rem;
+        h2{
+            font-size: 0.2rem;
+            font-weight: bold;
+            color: #333;
+        }
+        i{
+            font-size: 0.1rem;
+            color: #939393;
+        }
+    }
+    img{
+        width: 100%;
+    }
+    /deep/.swiper-container{
+        /deep/.swiper-wrapper{
+            /deep/.swiper-slide {
+                text-align: center;
+                font-size: 18px;
+                background: #fff;
+          
+                /* Center slide text vertically */
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: -webkit-flex;
+                display: flex;
+                -webkit-box-pack: center;
+                -ms-flex-pack: center;
+                -webkit-justify-content: center;
+                justify-content: center;
+                -webkit-box-align: center;
+                -ms-flex-align: center;
+                -webkit-align-items: center;
+                align-items: center;
+                transition: 300ms;
+                transform: scale(0.8);
+              }
+              /deep/.swiper-slide-active,.swiper-slide-duplicate-active{
+                transform: scale(1);
+              }
+        }
+    }
+    
 }
 
 .item_img{

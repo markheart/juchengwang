@@ -3,7 +3,7 @@ import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 class MySwiper extends Component{
     render(){
-        return <div className="swiper-container MySwiper">
+        return <div className="swiper-container HotSwiper">
             <div className="swiper-wrapper">
                 {this.props.children}
             </div>
@@ -11,14 +11,11 @@ class MySwiper extends Component{
         </div>
     }
     componentDidMount() {
-        new Swiper(".MySwiper", 
+        new Swiper(".HotSwiper", 
             {
-                loop:true,
-                autoplay:true,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                }
+                slidesPerView: 3,
+                spaceBetween: 30,
+                freeMode: true,
             }
         )
     }

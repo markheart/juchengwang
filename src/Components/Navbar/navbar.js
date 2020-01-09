@@ -34,9 +34,9 @@ class MyNavbar extends Component{
                         </p>
                     </div>
                     <div className={style.search}>
-                        <input type="text" placeholder="搜索热门演出"/>
+                        <input type="text" className="iconfont" placeholder="&#xebda;  搜索热门演出"/>
                     </div>
-                    <div className={style.data}>
+                    <div className={style.date}>
                         <i className="iconfont icon-icon_calendar"></i>
                     </div>
                 </div>

@@ -7,7 +7,7 @@ export default class Tabbar extends Component {
     return (
       <nav id={style.tabbar}>
         <ul>
-          <li><NavLink to='/home' activeClassName={style.active}>首页</NavLink></li>
+          <li><NavLink to='/home' activeClassName={style.active_home}>首页</NavLink></li>
           <li><NavLink to='/cinema' activeClassName={style.active}>剧院</NavLink></li>
           <li><NavLink to='/eticket' activeClassName={style.active}>票夹</NavLink></li>
           <li><NavLink to='/center' activeClassName={style.active}>我的</NavLink></li>

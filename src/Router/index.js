@@ -16,6 +16,7 @@ import Login from '../Views/Login/login'
 import Eticket from '../Views/Eticket/eticket'
 import {Provider} from 'react-redux'
 import Store from '../Redux/store'
+import CinemaList from '../Views/CinemaList/CinemaList'
 const router = (
   <Provider store={Store}>
     <HashRouter>
@@ -31,6 +32,7 @@ const router = (
           <Route path='/center' component={MyCenter}/>
           <Route path='/login' component={Login}/>
           <Route path='/city' component={City}/>
+          <Route path='/cinemalist/:cinemaid' component={CinemaList} exact/>
           <Route path='/detail/:myid' component={Detail} exact/>
           <Route path='/eticket' render={()=>
             localStorage.getItem('token')?<Eticket/>:<Redirect to='/login'/>

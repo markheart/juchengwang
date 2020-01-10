@@ -76,7 +76,7 @@ class Home extends Component {
         //---------------首页分类推荐数据-----------------
         Axios.get(`https://api.juooo.com/home/index/getFloorShow?city_id=${this.props.match.params.cityid}&version=6.0.9&referer=2`)
             .then(res => {
-                // console.log(res.data.data.list)
+                console.log(res.data.data)
                 this.setState({
                     separationlist: res.data.data,
                     sepfirstlist: res.data.data[0].list

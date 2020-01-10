@@ -63,7 +63,7 @@ class CinemaList extends Component {
               {element.name}
             </p>
             <p className={style.date}>
-              <span>{element.start_show_time.slice(0, 10)}-</span><span>{element.end_show_time.slice(5, 10)}</span>
+              <span>{element.start_show_time.slice(0, 10)} - </span><span>{element.end_show_time.slice(5, 10)}</span>
             </p>
             <p className={style.pirce}><span>￥{element.min_price} </span>起</p>
             <div className={style.support_desc+" "+"clear"}>
@@ -92,7 +92,7 @@ class CinemaList extends Component {
     this.props.showTabbar()
   }
   handelClick(id){
-    this.this.props.history.push(`/detail/${id}`)
+    this.props.history.push(`/detail/${id}`)
   }
 
 

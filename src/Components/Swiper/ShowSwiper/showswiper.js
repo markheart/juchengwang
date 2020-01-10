@@ -15,6 +15,8 @@ class MySwiper extends Component{
         new Swiper(".ShowSwiper", 
             {
                 slidesPerView: 'auto',
+                observer:true,
+                observeParents:true
             }
         )
     }

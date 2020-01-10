@@ -21,7 +21,9 @@ class MySwiper extends Component{
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
-                }
+                },
+                observer:true,
+                observeParents:true
             }
         )
     }

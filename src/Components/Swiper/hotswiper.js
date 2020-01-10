@@ -16,6 +16,8 @@ class MySwiper extends Component{
                 slidesPerView: 3,
                 spaceBetween: 30,
                 freeMode: true,
+                observer:true,
+                observeParents:true
             }
         )
     }

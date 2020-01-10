@@ -3,7 +3,9 @@ blockquote,html,body,p,h1,h2,h3,h4,h5,h6,dl,dt,dd,ul,ol,li,img,input,button,code
 fieldset,legend,figure,figcaption,blockquote,form,textarea,pre,span{
     margin: 0; padding: 0;
 }
-
+body,html{
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+}
 *{
     box-sizing: border-box;
 }

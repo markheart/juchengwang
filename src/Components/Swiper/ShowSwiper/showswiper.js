@@ -12,11 +12,22 @@ class MySwiper extends Component{
         </div>
     }
     componentDidMount() {
+<<<<<<< HEAD:src/Components/Swiper/ShowSwiper/showswiper.js
         new Swiper(".ShowSwiper", 
             {
                 slidesPerView: 'auto',
             }
         )
+=======
+        // 首页轮播初始化配置
+        // console.log(homeLoop)
+        const homeLoop = this.props.homeSwiper
+        const defaultinfo = {
+            observer:true,
+            observeParents:true
+        }
+        new Swiper(".MySwiper", {...homeLoop,...defaultinfo})
+>>>>>>> cinema-syl:src/Components/Swiper/swiper.js
     }
 }
 

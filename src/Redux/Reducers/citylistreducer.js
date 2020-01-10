@@ -7,7 +7,6 @@ const CitylistReducer = (prevState = [] , action) => {
         default:
             return prevState
     }
-
 }
 
 export default CitylistReducer

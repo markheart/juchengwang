@@ -27,8 +27,8 @@ class Cinemaitem extends Component {
 
         <MySwiper homeSwiper={
           {
-            slidesPerView: 2.8,
-          }}>
+            slidesPerView: 2.8
+          }} key={this.props.data.vid}>
           {
             this.props.data.showList.map(item =>
               <div className={"swiper-slide" + " " + style.swiperbox} key={item.id}>

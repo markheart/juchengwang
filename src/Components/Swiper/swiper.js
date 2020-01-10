@@ -12,9 +12,13 @@ class MySwiper extends Component{
     }
     componentDidMount() {
         // 首页轮播初始化配置
-        var homeLoop = this.props.homeSwiper
         // console.log(homeLoop)
-        new Swiper(".MySwiper", homeLoop)
+        const homeLoop = this.props.homeSwiper
+        const defaultinfo = {
+            observer:true,
+            observeParents:true
+        }
+        new Swiper(".MySwiper", {...homeLoop,...defaultinfo})
     }
 }
 

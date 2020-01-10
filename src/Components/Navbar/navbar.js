@@ -8,20 +8,26 @@ class MyNavbar extends Component{
     state = {
         hotcitylist:[],
         sortedCityList:[],
-        allcity:''
+        allcity:[]
     }
 
-    componentWillMount() {
+    componentDidMount() {
         // console.log(this.props.match.params.cityid)
         Axios.get('https://api.juooo.com/city/city/getSortedCityList?version=6.0.9&referer=2')
         .then(res => {
             // console.log(res.data.data)
             this.setState({
                 sortedCityList: res.data.data,
-                allcity:this.props.match.params.cityid
+                allcity: this.props.myCity
             })
         })
+
     }
+
+    // componentDidMount() {
+      
+    // }
+    
 
     render(){
         return (
@@ -31,7 +37,7 @@ class MyNavbar extends Component{
                         <i className="iconfont icon-icon_gps_fill"></i>
                         <p>
                             {   
-                                this.state.allcity === 0?'全国':this.props.myCity
+                                this.props.myCity
                             }
                         </p>
                     </div>

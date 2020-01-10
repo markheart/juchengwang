@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import style from './cinemaitem.module.scss'
+<<<<<<< HEAD
 import MySwiper from '../Swiper/CinemaSwiper/CinemaSwiper'
+=======
+import MySwiper from '../Swiper/hotswiper'
+>>>>>>> 369a4a2ff4e4e71f8c09709618a3dc9171f4cad4
 import { withRouter } from 'react-router-dom'
 class Cinemaitem extends Component {
   //该页面获取cinema数据(this.props.data)

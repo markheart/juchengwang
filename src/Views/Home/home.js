@@ -78,7 +78,6 @@ class Home extends Component {
     render() {
         return <div>
             <Navbar myCity={this.state.cityname}></Navbar>
-<<<<<<< HEAD
             <div className={style.banner_box}>
                 {/* 这里是首页banner */}
                 <MySwiper
@@ -97,14 +96,12 @@ class Home extends Component {
             </div>
             {/* 这里是首页金刚区导航 */}
             <ul className={style.nav}>
-=======
-            <MySwiper key={this.state.looplist.length} homeSwiper={
+            {/* <MySwiper key={this.state.looplist.length} homeSwiper={
                 {
                     loop:true,
                     autoplay:true,
                 }
-            }>
->>>>>>> cinema-syl
+            }> */}
                 {
                     this.state.navlist.map(item =>
                         <li key={item.id} onClick={() => {

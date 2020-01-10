@@ -1,10 +1,9 @@
 import React,{Component} from 'react'
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
-import './show.scss'
 class MySwiper extends Component{
     render(){
-        return <div className="swiper-container ShowSwiper">
+        return <div className="swiper-container HotSwiper">
             <div className="swiper-wrapper">
                 {this.props.children}
             </div>
@@ -12,11 +11,8 @@ class MySwiper extends Component{
         </div>
     }
     componentDidMount() {
-        new Swiper(".ShowSwiper", 
-            {
-                slidesPerView: 'auto',
-            }
-        )
+      let defaultinfo=null
+        new Swiper(".HotSwiper", {...defaultinfo,...this.props.homeSwiper})
     }
 }
 

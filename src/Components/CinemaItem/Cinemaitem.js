@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import style from './cinemaitem.module.scss'
-import MySwiper from '../Swiper/swiper'
+import MySwiper from '../Swiper/CinemaSwiper/CinemaSwiper'
 import { withRouter } from 'react-router-dom'
 class Cinemaitem extends Component {
   //该页面获取cinema数据(this.props.data)
@@ -28,7 +28,8 @@ class Cinemaitem extends Component {
         <MySwiper homeSwiper={
           {
             slidesPerView: 2.8
-          }} key={this.props.data.vid}>
+          }
+          } key={this.props.data.vid}>
           {
             this.props.data.showList.map(item =>
               <div className={"swiper-slide" + " " + style.swiperbox} key={item.id}>

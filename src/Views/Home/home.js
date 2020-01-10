@@ -121,15 +121,12 @@ class Home extends Component {
             </div>
             {/* 这里是首页金刚区导航 */}
             <ul className={style.nav}>
-<<<<<<< HEAD
             {/* <MySwiper key={this.state.looplist.length} homeSwiper={
                 {
                     loop:true,
                     autoplay:true,
                 }
             }> */}
-=======
->>>>>>> 369a4a2ff4e4e71f8c09709618a3dc9171f4cad4
                 {
                     this.state.navlist.map(item =>
                         <li key={item.id} onClick={() => {

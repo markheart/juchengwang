@@ -1,0 +1,27 @@
+#detail_head{
+  
+  .bg{
+    background: url('https://image.juooo.com/group1/M00/03/05/rAoKmV1odMCAeZ8AAACmY6FGGvU674.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height:2.18rem;
+    text-align: center;
+    line-height: 2.18rem;
+    float: left;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    -webkit-filter: blur(15px);
+    -moz-filter: blur(15px);
+    -o-filter: blur(15px);
+    -ms-filter: blur(15px);
+    filter: blur(15px);
+  }
+  .head_content{
+    position:absolute;
+    left: 0px;
+    right: 0px;
+  }
+}

@@ -104,6 +104,7 @@ getnewdatalist = () => {
 
 handelClick=(text)=>{
   this.refs.searchinfo.value = text
+  this.gethotlist()
 }
 }
 

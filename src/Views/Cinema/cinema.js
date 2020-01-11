@@ -18,7 +18,7 @@ class Cinema extends Component {
   render() {
     return (
       <div id={style.cinema}>
-        <h2 className={style.title}>剧院</h2>
+        <h2 className={style.cinematitle}>剧院</h2>
         {this.props.cinemalist.map(item=>
         item.showList.length ? <Cinemaitem data={item} key={item.id}/> : null
         )}

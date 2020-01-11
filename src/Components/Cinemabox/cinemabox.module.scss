@@ -1,0 +1,93 @@
+.cinemafall{
+  width: 100%;
+  background-color:#fff;
+  img{
+    width: 100%;
+  }
+  .content{
+    padding:0.1rem;
+  }
+  .date{
+    span{
+      font-size:0.1rem;
+      color: #9d9d9d;
+    }
+  }
+  .pirce{
+    line-height: 0.23rem;
+    height: 0.23rem;
+    font-size: 0.1rem;
+    color: #ababab;
+    margin:0.1rem 0;
+    span{
+      color:#fd846a;
+      font-size: 0.16rem;
+      font-weight: 100;
+    }
+  }
+  .cinemaname{
+    font-size: 0.14rem;
+    color: #565656;
+    height: 0.4rem;
+    text-overflow: ellipsis;
+    line-clamp: 2;
+    text-overflow: -o-ellipsis-lastline;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    span{
+      display: inline-block;
+      width:0.34rem;
+      height: 0.19rem;
+      color: #fff;
+      background-image: linear-gradient(to bottom right,#fd9043,#fd624c);
+      font-size:0.08rem ;
+      line-height:0.18rem ;
+      text-align: center;
+      border-radius: 0.1rem;
+      margin-right:5px;
+    }
+  }
+  .support_desc{
+    span{
+      float: left;
+      margin-right:0.08rem;
+      margin-bottom: 0.08rem;
+      background-color: #fff0ee;
+      color: #fd846c;
+      padding:0.02rem 0.06rem;
+      font-size: 0.12rem;
+      border-radius: 0.1rem;
+    }
+  }
+}
+.cinemaboxli{
+  width: 1.7rem;
+  margin:3px;
+  border-radius: 5px;
+  overflow: hidden;
+  position: relative;
+  .cinemacity{
+    display: block;
+    width: 0.33rem;
+    height: 0.18rem;
+    overflow: hidden;
+    position: absolute;
+    background-color: #31302e;
+    top: 7px;
+    right: 7px;
+    color: #d8dadc;
+    font-weight: 100;
+    text-align: center;
+    line-height: 0.18rem;
+    font-size: 0.11rem;
+  }
+}
+.cinemabox{
+  padding:0.10rem;
+  background-color: #f0f0f0;
+  margin-top: 0.44rem;
+  z-index: 9999;
+}

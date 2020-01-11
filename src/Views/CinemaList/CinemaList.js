@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { hideTabbar, showTabbar } from '../../Redux/Actions/login'
+import {showSearch , hideSearch} from '../../Redux/Actions/showsearch'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Axios from 'axios'
 import Masonry from 'react-masonry-component';
 import style from './CinemaList.module.scss'
+import Searchbar from '../../Components/Search/Search'
+import Cinemabox from '../../Components/Cinemabox/Cinemabox'
+
 class CinemaList extends Component {
   state = {
     datatotal: 0,
     datalist: [],
     height: document.documentElement.clientHeight,
+    searchdata:[],
     page: 1
   }
-
-
   //--------------------------------------------------懒加载------------------------------------------------------
   getnewdatalist = () => {
     console.log(document.body.offsetHeight - this.state.height - document.documentElement.scrollTop)
@@ -34,8 +37,8 @@ class CinemaList extends Component {
     }
   }
   //--------------------------------------------------懒加载------------------------------------------------------
-
   componentDidMount() {
+    this.props.showSearch()
     this.props.hideTabbar()
     let dataid = this.props.match.params.cinemaid
     // 发送ajax请求数据,附上ID
@@ -47,35 +50,27 @@ class CinemaList extends Component {
         datatotal: res.data.data.total
       })
     })
+    Axios({
+      url:"https://api.juooo.com/Show/Search/getHotWord?version=6.0.9&referer=2"
+    }).then(res=>{
+      console.log(res.data)
+      this.setState({
+        searchdata:[...this.state.searchdata,...res.data.data]
+      })
+    })
     window.addEventListener('scroll', this.getnewdatalist); //监听滚动事件,且调用函数
   }
-
   // -------------------------瀑布流组件---------------------------------
+
+
   render() {
     const childElements = this.state.datalist.map((element,i) =>
-      <li key={i} onClick={()=>{this.handelClick(element.schedular_id)}}>
-        <span className={style.cinemacity}>{element.city_name}</span>
-        <div className={style.cinemafall}>
-          <img src={element.pic} />
-          <div className={style.content}>
-            <p className={style.cinemaname}>
-              <span>主办</span>
-              {element.name}
-            </p>
-            <p className={style.date}>
-              <span>{element.start_show_time.slice(0, 10)} - </span><span>{element.end_show_time.slice(5, 10)}</span>
-            </p>
-            <p className={style.pirce}><span>￥{element.min_price} </span>起</p>
-            <div className={style.support_desc+" "+"clear"}>
-              {element.support_desc.map((item,i)=>
-                <span key={i}>{item}</span>
-                )}
-            </div>
-          </div>
-        </div>
-      </li>
+     <Cinemabox cinemaelement={element} cinemaindex={i} key={i}/>
     );
+    // {<Searchbar />}
     return (
+      <div>
+      {this.state.searchdata.length>0 ?<Searchbar searchdata={this.state.searchdata}/>:null}
       <Masonry
         className={style.cinemabox}
         elementType={'ul'} // default 'div'
@@ -84,23 +79,26 @@ class CinemaList extends Component {
       >
         {childElements}
       </Masonry>
+      </div>
     );
     // -------------------------瀑布流组件---------------------------------
   }
   componentWillUnmount() {
     window.removeEventListener('scroll', this.getnewdatalist)
     this.props.showTabbar()
+    this.props.hideSearch()
   }
-  handelClick(id){
-    this.props.history.push(`/detail/${id}`)
-  }
-
 
 }
-
-const mapStateToProp = null
+const mapStateToProp = (state)=>{
+  return{
+    isSearcheShow:state.searchReducer
+  }
+}
 const mapReducerToProps = {
   hideTabbar,
-  showTabbar
+  showTabbar,
+  showSearch,
+  hideSearch
 }
 export default connect(mapStateToProp, mapReducerToProps)(withRouter(CinemaList))

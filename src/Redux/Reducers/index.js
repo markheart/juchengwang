@@ -3,12 +3,13 @@ import CitylistReducer from './citylistreducer'
 import { combineReducers } from 'redux'
 import cinemaReducer from './cinemaReducer'
 import pageTitleReducer from './pageTitle'
-
+import searchReducer from './searchReducer'
 const reducer = combineReducers({
     tabbarReducer,
     CitylistReducer,
     pageTitleReducer,
     cinemaReducer,
+    searchReducer
 })
     
 

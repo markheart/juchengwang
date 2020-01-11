@@ -3,7 +3,7 @@ import Axios from 'axios'
 export let getCityList = () => {
     return Axios.get(`https://api.juooo.com/city/city/getHotCityList?version=6.0.9&referer=2`)
         .then(res=>{
-            console.log(res.data)
+            // console.log(res.data)
             return {
                 type: 'GET_CityListDate',
                 payload: res.data.data.hot_city_List

@@ -19,7 +19,7 @@ class CinemaList extends Component {
   }
   //--------------------------------------------------懒加载------------------------------------------------------
   getnewdatalist = () => {
-    console.log(document.body.offsetHeight - this.state.height - document.documentElement.scrollTop)
+    // console.log(document.body.offsetHeight - this.state.height - document.documentElement.scrollTop)
     if (document.body.offsetHeight - this.state.height - document.documentElement.scrollTop <= 100) {
       this.setState({
         page: this.state.page + 1

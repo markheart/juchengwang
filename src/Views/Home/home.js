@@ -31,16 +31,25 @@ class Home extends Component {
 
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         //---------------为你推荐的数据-----------------
         //需要城市绑定功能，所以不可以放在redux中
         Axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.props.match.params.cityid}&category=&keywords=&venue_id=&start_time=&page=1&referer_type=index&version=6.0.9&referer=2`)
             .then(res => {
-                console.log(res.data.data.list)     
-                this.setState({
-                    datalist: res.data.data.list,
-                    cityname: res.data.data.list[0].city_name
-                })
+                // console.log(res.data.data.list)    
+                // console.log(this.props.match.params.cityid) 
+                if(this.props.match.params.cityid === '0'){
+                    console.log('quanguo')
+                    this.setState({
+                        cityname: '全国',
+                        datalist: res.data.data.list,
+                    })
+                }else{
+                    this.setState({
+                        cityname: res.data.data.list[0].city_name,
+                        datalist: res.data.data.list
+                    })
+                }
                 // console.log(this.state.datalist)
             })
 
@@ -76,11 +85,18 @@ class Home extends Component {
         //---------------首页分类推荐数据-----------------
         Axios.get(`https://api.juooo.com/home/index/getFloorShow?city_id=${this.props.match.params.cityid}&version=6.0.9&referer=2`)
             .then(res => {
-                console.log(res.data.data)
-                this.setState({
-                    separationlist: res.data.data,
-                    sepfirstlist: res.data.data[0].list
-                })                
+                // console.log(res.data.data)
+                if(Object.keys(res.data.data).length === 0){
+                    // console.log('找不到对象')
+                    this.setState({
+                        sepfirstlist:[]
+                    })
+                }else{
+                    this.setState({
+                        separationlist: res.data.data,
+                        sepfirstlist: res.data.data[0].list
+                    })  
+                } 
             })
     }
 
@@ -121,12 +137,6 @@ class Home extends Component {
             </div>
             {/* 这里是首页金刚区导航 */}
             <ul className={style.nav}>
-            {/* <MySwiper key={this.state.looplist.length} homeSwiper={
-                {
-                    loop:true,
-                    autoplay:true,
-                }
-            }> */}
                 {
                     this.state.navlist.map(item =>
                         <li key={item.id} onClick={() => {
@@ -260,7 +270,7 @@ class Home extends Component {
             }
             <h2 className={style.foryoutitle}>为你推荐</h2>
             <Masonry
-                className={'my-gallery-class'} // default ''
+                className={style.Masonry_box} // default ''
                 elementType={'ul'} // default 'div'
                 options={masonryOptions} // default {}
                 disableImagesLoaded={false} // default false

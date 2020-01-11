@@ -24,11 +24,6 @@ class MyNavbar extends Component{
 
     }
 
-    // componentDidMount() {
-      
-    // }
-    
-
     render(){
         return (
             <div>

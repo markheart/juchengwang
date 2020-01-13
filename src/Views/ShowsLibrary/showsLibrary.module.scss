@@ -1,3 +1,42 @@
+.showsbar_box{
+  width: 100%;
+  height: 0.42rem;
+  display: flex;
+  align-items: center;
+  .showsbar_box_left{
+     display: flex;
+     flex: 1;
+     overflow: hidden;
+     white-space: nowrap;
+     overflow-x: scroll;
+     padding-left: 0.15rem;
+     li{
+          height: 0.24rem;
+          margin-right: 0.2rem;
+     }
+     .active{
+      color:#ef7859;
+      border-bottom: 2px solid #ef7859;
+     }
+  }
+  .choose_city{
+    width: 0.71rem;
+    height: 0.14rem;
+    border-left: 1px solid #e5e5e5;
+    display: flex;
+    align-items: center;
+    padding-left: 0.14rem;
+    margin-left: 0.2rem;
+    span{
+      color: #838383;
+      font-size: 0.14rem;
+    }
+    i{
+      color: #838383;
+      font-size: 0.14rem;
+    }
+  }
+}
 .Masonry_box{
     padding:0 0.10rem;
     display: flex;
@@ -17,7 +56,7 @@
       img{
         width: 100%;
       }
-      span{
+      .city{
         position: absolute;
         top: 0.1rem;
         right: 0.1rem;
@@ -31,7 +70,7 @@
         color: #fff;
         font-size: 0.12rem;
       }
-      p{
+      h3{
         font-size: 0.14rem;
         color: #3a3a3a;
         overflow: hidden;
@@ -41,6 +80,7 @@
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
         padding: 0 0.13rem;
+        padding-top: 0.1rem;
         img{
           display: inline-block;
           width: 0.33rem;
@@ -49,7 +89,37 @@
           margin-left: 0.07rem;
           margin-right: 0.07rem;
         }
-  
+      }
+      .date{
+        font-size: 0.1rem;
+        color: #838383;
+        padding-left: 0.13rem;
+        i{
+          margin-left: 0.04rem;
+        }
+      }
+      .pic{
+        font-size: 0.13rem;
+        color: #ef7859;
+        padding-left: 0.13rem;
+        margin-top: 0.02rem;
+        margin-bottom: 0.1rem;
+        i{
+          font-size: 0.1rem;
+          color: #838383;
+        }
+      }
+      .type{
+        padding: 0.04rem 0.06rem;
+        background: #fdf2f0;
+        border-radius: 0.08rem;
+        text-align: center;
+        line-height: 0.18rem;
+        color: #ef7859;
+        margin-left: 0.13rem;
+        margin-right: 0.13rem;
+        margin-bottom: 0.1rem;
+        font-size: 0.11rem;
       }
     }
   }

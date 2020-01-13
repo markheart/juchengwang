@@ -9,7 +9,7 @@ import { showTabbar, hideTabbar } from '../../Redux/Actions/login'
 class City extends Component {
 
     scrollToAnchor = (anchorName,aIndex) => {
-        console.log(aIndex)
+        // console.log(aIndex)
         // console.log('滚动+变红')
         this.setState({
             current:aIndex
@@ -33,13 +33,16 @@ class City extends Component {
         current: 0
     }
 
-    componentWillMount() {
-        this.props.showTabbar()
+    UNSAFE_componentWillMount() {
         if (this.props.datalist.length === 0) {
             this.props.getCityList()
         } else {
             // console.log("缓存")
         }
+    }
+
+    componentWillUnmount(){
+        this.props.showTabbar()
     }
 
     componentDidMount() {

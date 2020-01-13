@@ -1,3 +1,13 @@
+.home_icon{
+  position: fixed;
+  right: 0.12rem;
+  bottom: 0.9rem;
+  z-index: 500;
+  img{
+    width: 0.58rem;
+  }
+}
+
 .banner_box {
   width: 3.46rem;
   height: 1.4rem;
@@ -364,7 +374,7 @@
     img{
       width: 100%;
     }
-    span{
+    .city{
       position: absolute;
       top: 0.1rem;
       right: 0.1rem;
@@ -378,7 +388,7 @@
       color: #fff;
       font-size: 0.12rem;
     }
-    p{
+    h3{
       font-size: 0.14rem;
       color: #3a3a3a;
       overflow: hidden;
@@ -396,10 +406,45 @@
         margin-left: 0.07rem;
         margin-right: 0.07rem;
       }
-
+    }
+    .date{
+      font-size: 0.1rem;
+      color: #838383;
+      padding-left: 0.13rem;
+      i{
+        margin-left: 0.04rem;
+      }
+    }
+    .pic{
+      font-size: 0.13rem;
+      color: #ef7859;
+      padding-left: 0.13rem;
+      margin-top: 0.02rem;
+      margin-bottom: 0.1rem;
+      i{
+        font-size: 0.1rem;
+        color: #838383;
+      }
+    }
+    .type{
+      padding: 0.04rem 0.06rem;
+      background: #fdf2f0;
+      border-radius: 0.08rem;
+      text-align: center;
+      line-height: 0.18rem;
+      color: #ef7859;
+      margin-left: 0.13rem;
+      margin-right: 0.13rem;
+      margin-bottom: 0.1rem;
+      font-size: 0.11rem;
     }
   }
 }
 
+.navbarheight{
+  width: 100%;
+  height: 0.56rem;
+  box-shadow: 0px 0px -5px -1px rgba($color: #000000, $alpha: 0.2);
+}
 
 

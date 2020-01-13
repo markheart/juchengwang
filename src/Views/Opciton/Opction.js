@@ -9,17 +9,20 @@ export default class Opction extends Component {
   render() {
     return (
       <div id={style.opction}>
-        <div>
-         <Back />
+        <div className={style.opctioncontent}>
+          <div className={style.opctiontop}>
+            <Back />
+          </div>
         </div>
-         {this.state.userinfo?<ul>
+         {this.state.userinfo?<ul className={style.opctioninfo}>
            <li>
              <img src={this.state.userinfo.basic_info.photo} />
              <div>
-             {this.state.userinfo.basic_info.nick_name}
+              <p>{this.state.userinfo.basic_info.nick_name}</p>
+              <p>用户ID:{this.state.userinfo.basic_info.uid}</p>
              </div>
            </li>
-           <li onClick={this.logout}>
+           <li onClick={this.logout} className={style.logouttext}>
              退出账号
            </li>
          </ul> : null}

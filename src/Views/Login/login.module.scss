@@ -1,0 +1,44 @@
+#login{
+  padding:0 0.3rem;
+  .loginlogo{
+    position: relative;
+    height: 1.0rem;
+    width: 100%;
+    margin-bottom: 0.3rem;
+    img{
+      width: 1.5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+    }
+  .logincontent{
+    input{
+      border: none;
+      border-bottom: 1px solid #bbbbbb;
+      display: block;
+      height:0.62rem ;
+      width: 100%;
+      font-size: 0.16rem;
+      color: #7e7e7e;
+    }
+    button{
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 0.25rem;
+      line-height: 0.5rem;
+      border: none;
+      margin-top: 0.45rem;
+      background: linear-gradient(50deg, #ff9a34, #ff4d4a);
+      opacity:0.4;
+      font-size: 0.17rem;
+      color: #fff;
+    }
+  }
+  .register{
+    margin-top: 0.2rem;
+    color: #808080;
+    font-size: 0.14rem;
+  }
+}

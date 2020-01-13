@@ -10,7 +10,9 @@ class Cinemabox extends Component {
         <img src={this.props.cinemaelement.pic} />
         <div className={style.content}>
           <p className={style.cinemaname}>
-            <span>主办</span>
+            {this.props.cinemaelement.method_icon.length ? <span>
+              <img src={this.props.cinemaelement.method_icon}/>
+            </span> : null}
             {this.props.cinemaelement.name}
           </p>
           <p className={style.date}>

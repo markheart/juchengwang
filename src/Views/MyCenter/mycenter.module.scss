@@ -1,0 +1,109 @@
+#mycenter{
+  width: 100%;
+  background:#f2f2f2;
+  .info{
+    background: url(https://m.juooo.com/static/img/personal_bg_1.f5fc96c.png) no-repeat top center;
+    background-size: 100%;
+    padding:0 0.15rem;
+    height: 100%;
+    .infocontent{   
+      height: 1.56rem;
+      width: 100%;
+      border-radius: 0.04rem 0.04rem 0 0;
+      background: #fff;
+      position: relative;
+      .userid{
+        margin-left:0.86rem;
+        h4{
+          font-size:0.14rem ;
+          line-height: 0.22rem;
+          padding-top: 0.12rem;
+        }
+        p{
+          font-size: 0.1rem;
+          color: #b4b4b4;
+        }
+      }
+      .user_money{
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        justify-content: space-around;
+        text-align: center;
+        li{
+          flex: 1;
+          position: relative;
+          &:after{
+            content: " ";
+            display: block;
+            height: 0.3rem;
+            border-right: 1px solid #f0f0f0;
+            position: absolute;
+            top: 0.12rem;
+            right: 0;
+          }
+          &:last-of-type{
+            &:after{
+              content: "";
+              border: none;
+            }
+            p{
+              font-size: 0.15rem;
+              color: #000;
+            }
+          }
+        }
+        p{
+          color: #fe8972;
+          font-size: 0.18rem;
+        }
+        h4{
+          height: 0.4rem;
+          line-height: 0.4rem;
+          font-size: 0.12rem;
+          color: #6a6a6a;
+        }
+      }
+      .vip_info{
+        color: #3a3a3c;
+        width: 0.82rem;
+        height: 0.28rem;
+        text-align: center;
+        line-height: 0.28rem;
+        background: linear-gradient(-45deg, #f5dea9, #f8d583);
+      border-radius: 0.36rem 0px 0px 0.36rem;
+      float:right;
+      }
+      img{
+        height: 0.59rem;
+        width: 0.59rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 50%;
+        position: absolute;
+        top:-0.12rem;
+        left:0.16rem;
+      }
+    }
+    .top{
+      position: relative;
+      width: 100%;
+      height: 0.57rem;
+      line-height: 0.57rem;
+      .opction{
+        position: absolute;
+        color: #fff;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+  .buyvip{
+    width: 100%;
+  }
+  .listone{
+    width: 100%;
+    display: flex;
+
+  }
+}

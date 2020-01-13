@@ -18,6 +18,10 @@ import Eticket from '../Views/Eticket/eticket'
 import {Provider} from 'react-redux'
 import Store from '../Redux/store'
 import CinemaList from '../Views/CinemaList/CinemaList'
+import Register from '../Views/Reg/Reg'
+import Password from '../Views/Password/Password'
+import Opction from '../Views/Opciton/Opction'
+
 const router = (
   <Provider store={Store}>
     <HashRouter>
@@ -32,12 +36,15 @@ const router = (
           <Route path='/cinema' component={Cinema}/>
           <Route path='/center' component={MyCenter}/>
           <Route path='/login' component={Login}/>
+          <Route path='/register' component={Register}/>
+          <Route path='/password' component={Password}/>
           <Route path='/city' component={City}/>
+          <Route path='/opction' component={Opction} />
           <Route path='/date' component={MyDate}/>
           <Route path='/cinemalist/:cinemaid' component={CinemaList} exact/>
           <Route path='/detail/:myid' component={Detail} exact/>
           <Route path='/eticket' render={()=>
-            localStorage.getItem('token')?<Eticket/>:<Redirect to='/login'/>
+            localStorage.getItem('juooo_app_token')?<Eticket/>:<Redirect to='/login'/>
           }/>
           <Redirect from='/*' to='/home/0' exact></Redirect>
           <Redirect to='/error'></Redirect>

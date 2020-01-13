@@ -10,9 +10,11 @@ class DetailHead extends Component {
       <div id={style.top}>
         <div>
           <span className={'iconfont '+style.back} onClick={this.handleBack}>&#xebc6;</span>
-          <span className='play'>演出详情</span>
-          <span className={'iconfont '+style.share} onClick={this.handleShare}>&#xebc4;</span>
-          <span className={'iconfont '+style.to_home} onClick={this.handlePush}>&#xeb98;</span>
+          <span className={style.play}>演出详情</span>
+          <div className ={style.right}> 
+            <span className={'iconfont '+style.share} onClick={this.handleShare}>&#xebc4;</span>
+            <span className={'iconfont '+style.to_home} onClick={this.handlePush}>&#xeb98;</span>
+          </div>
         </div>
      </div>
     )

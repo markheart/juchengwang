@@ -1,7 +1,7 @@
 #detail_head{
   
   .bg{
-    background: url('https://image.juooo.com/group1/M00/03/05/rAoKmV1odMCAeZ8AAACmY6FGGvU674.jpg');
+    
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
@@ -20,8 +20,68 @@
     filter: blur(15px);
   }
   .head_content{
+    
     position:absolute;
     left: 0px;
     right: 0px;
+    .imgTitle{
+      border-radius: 0.03rem;
+      margin-top:0.16rem ;
+      margin-right: 0.14rem;
+      .img{
+        float: left;
+        position: relative;
+        margin-left: 0.23rem;
+        width:1.05rem;
+        height: 1.4rem;
+        .bigImg{
+          width: 100%;
+        }
+        .smallImg{
+          position: absolute;
+          left: 0.04rem;
+          width: 0.39rem;
+          top:-0.01rem;
+        }
+      }
+    }
+    .right{
+      width: 2.26rem;
+      height: 1.42rem;
+      float: right;
+      color: #fefefe;
+      position: relative;
+      p{
+        font-size: 0.16rem;
+        font-weight: 600;
+      }
+      .realName{
+        font-size: 0.1rem;
+        color: #fcede6;
+        position: absolute;
+        left: 0.05rem;
+        bottom:0.45rem;
+        background-color: #ec6900;
+        padding: 0.03rem 0.05rem;
+        border-radius: 0.02rem;
+      }
+      .eticket{
+        font-size: 0.1rem;
+        color: #fcede6;
+        position: absolute;
+        left: 0.05rem;
+        bottom:0.45rem;
+        background-color: #e9b02d;
+        padding: 0.03rem 0.05rem;
+        border-radius: 0.02rem;
+      }
+      h4{
+        position: absolute;
+        bottom:0.1rem;
+        font-size: 0.14rem;
+        font-weight: bold;
+      }
+    }
+    
   }
 }

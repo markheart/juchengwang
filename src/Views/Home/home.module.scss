@@ -345,17 +345,21 @@
   padding-left: 0.14rem;
   margin-bottom: 0.14rem;
 }
+.Masonry_box{
+  padding:0 0.10rem;
+  display: flex;
+  justify-content: space-between;
   .foryoulist{
     width: 1.72rem;
-    margin-left: 0.14rem;
     margin-bottom: 0.05rem;
+    margin-right: 0.05rem;
     padding-bottom: 0.15rem;
     border-radius: 0.05rem;
     border: 1px solid #ededed;
     overflow: hidden;
     position: relative;
     &:nth-of-type(2n){
-      margin-left: 0.05rem;
+      margin-right: 0;
     }
     img{
       width: 100%;
@@ -395,6 +399,7 @@
 
     }
   }
+}
 
 
 

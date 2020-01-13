@@ -20,10 +20,11 @@ class Home extends Component {
         datalist: [],
         looplist: [],
         navlist: [],
+        navlist2: [],
         hotlist: [],
         showlist: [],
         separationlist: [],
-        sepfirstlist:[],
+        sepfirstlist: [],
         cityname: '',
     }
 
@@ -31,16 +32,25 @@ class Home extends Component {
 
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         //---------------为你推荐的数据-----------------
         //需要城市绑定功能，所以不可以放在redux中
         Axios.get(`https://api.juooo.com/Show/Search/getShowList?city_id=${this.props.match.params.cityid}&category=&keywords=&venue_id=&start_time=&page=1&referer_type=index&version=6.0.9&referer=2`)
             .then(res => {
-                console.log(res.data.data.list)     
-                this.setState({
-                    datalist: res.data.data.list,
-                    cityname: res.data.data.list[0].city_name
-                })
+                // console.log(res.data.data.list)    
+                // console.log(this.props.match.params.cityid) 
+                if (this.props.match.params.cityid === '0') {
+                    // console.log('quanguo')
+                    this.setState({
+                        cityname: '全国',
+                        datalist: res.data.data.list,
+                    })
+                } else {
+                    this.setState({
+                        cityname: res.data.data.list[0].city_name,
+                        datalist: res.data.data.list
+                    })
+                }
                 // console.log(this.state.datalist)
             })
 
@@ -48,10 +58,11 @@ class Home extends Component {
         // console.log(this.props.match.params.cityid)
         Axios.get(`https://api.juooo.com/home/index/getClassifyHome?city_id=${this.props.match.params.cityid}&abbreviation=&version=6.0.9&referer=2`)
             .then(res => {
-                // console.log(res.data.data.classify_list)
+                // console.log(res.data.data.classify_list.slice(0,5))
                 this.setState({
                     looplist: res.data.data.slide_list,
-                    navlist: res.data.data.classify_list
+                    navlist: res.data.data.classify_list.slice(0, 5),
+                    navlist2: res.data.data.classify_list.slice(5, 10)
                 })
             })
 
@@ -76,31 +87,38 @@ class Home extends Component {
         //---------------首页分类推荐数据-----------------
         Axios.get(`https://api.juooo.com/home/index/getFloorShow?city_id=${this.props.match.params.cityid}&version=6.0.9&referer=2`)
             .then(res => {
-                console.log(res.data.data)
-                this.setState({
-                    separationlist: res.data.data,
-                    sepfirstlist: res.data.data[0].list
-                })                
+                // console.log(res.data.data)
+                if (Object.keys(res.data.data).length === 0) {
+                    // console.log('找不到对象')
+                    this.setState({
+                        sepfirstlist: []
+                    })
+                } else {
+                    this.setState({
+                        separationlist: res.data.data,
+                        sepfirstlist: res.data.data[0].list
+                    })
+                }
             })
     }
 
     render() {
-        const childElements = this.state.datalist.map(item=>
-                <li className={style.foryoulist} key={item.schedular_id} onClick={()=>{
-                    this.handleClick(item.schedular_id)    
-                }}>
-                    <img src={item.pic} alt=""/>
-                    <span>{item.city_name}</span>
-                    <p>
-                        {
-                            item.method_icon===''?null:
-                            <img src={item.method_icon} alt=""/>
-                        }
-                        {item.name}
-                    </p>
-                </li>
-            
-            );
+        const childElements = this.state.datalist.map(item =>
+            <li className={style.foryoulist} key={item.schedular_id} onClick={() => {
+                this.handleClick(item.schedular_id)
+            }}>
+                <img src={item.pic} alt="" />
+                <span>{item.city_name}</span>
+                <p>
+                    {
+                        item.method_icon === '' ? null :
+                            <img src={item.method_icon} alt="" />
+                    }
+                    {item.name}
+                </p>
+            </li>
+
+        );
         return <div>
             <Navbar myCity={this.state.cityname}></Navbar>
             <div className={style.banner_box}>
@@ -121,17 +139,21 @@ class Home extends Component {
             </div>
             {/* 这里是首页金刚区导航 */}
             <ul className={style.nav}>
-            {/* <MySwiper key={this.state.looplist.length} homeSwiper={
-                {
-                    loop:true,
-                    autoplay:true,
-                }
-            }> */}
                 {
                     this.state.navlist.map(item =>
                         <li key={item.id} onClick={() => {
                             this.toshowsLibrary(item.category_id)
                         }}>
+                            <img src={item.pic} alt="" />
+                            <span>{item.name}</span>
+                        </li>
+                    )
+                }
+            </ul>
+            <ul className={style.nav}>
+                {
+                    this.state.navlist2.map(item =>
+                        <li key={item.id}>
                             <img src={item.pic} alt="" />
                             <span>{item.name}</span>
                         </li>
@@ -158,12 +180,14 @@ class Home extends Component {
                         {
                             this.state.hotlist.map((item, index) =>
                                 <div className="swiper-slide" key={index}>
-                                    <div className={style.swiper_box}>
-                                        <div className={style.swiper_box_img}>
-                                            <img src={item.pic} alt="" />
+                                    <a href={item.schedular_url}>
+                                        <div className={style.swiper_box}>
+                                            <div className={style.swiper_box_img}>
+                                                <img src={item.pic} alt="" />
+                                            </div>
+                                            <h3>{item.show_name}</h3>
                                         </div>
-                                        <h3>{item.show_name}</h3>
-                                    </div>
+                                    </a>
                                 </div>
                             )
                         }
@@ -181,13 +205,15 @@ class Home extends Component {
                         {
                             this.state.showlist.map((item, index) =>
                                 <div className="swiper-slide" key={index}>
-                                    <div className={style.show_box}>
-                                        <div className={style.show_box_img}>
-                                            <img src={item.pic} alt="" />
+                                    <a href={item.tour_show_url}>
+                                        <div className={style.show_box}>
+                                            <div className={style.show_box_img}>
+                                                <img src={item.pic} alt="" />
+                                            </div>
+                                            <h3>{item.show_name}</h3>
+                                            <p><span>{item.schedular_num}</span>场巡演</p>
                                         </div>
-                                        <h3>{item.show_name}</h3>
-                                        <p><span>{item.schedular_num}</span>场巡演</p>
-                                    </div>
+                                    </a>
                                 </div>
                             )
                         }
@@ -205,62 +231,68 @@ class Home extends Component {
             </div>
             {/* 这里是首页分类推荐 */}
             {
-                this.state.sepfirstlist.length === 0?null:
+                this.state.sepfirstlist.length === 0 ? null :
                     <ul>
-                    {
-                        this.state.separationlist.map((item, index) =>
-                            <li key={item.cat_id} className={style.sep_box}>
-                                <div className={style.sep_title}>
-                                    <h2>{item.title}</h2>
-                                    <i className="iconfont icon-icon_next_arrow"></i>
-                                </div>
-                                {
-                                    this.state.separationlist[index].list.map((item, index) =>
-                                        index === 0 ?
-                                            <div key={item.sche_id} className={style.sep_first}>
-                                                <div className={style.img_box}>
-                                                    <img src={item.pic} alt="" className={style.img_imp} />
-                                                </div>
-                                                <div className={style.black}></div>
-                                                <img src={item.pic} alt="" className={style.img_bg} />
-                                                <div className={style.sep_font}>
-                                                    <div className={style.sep_data}>
-                                                        <p>{item.display_show_time}</p>
-                                                        <span>{item.week}</span>
+                        {
+                            this.state.separationlist.map((item, index) =>
+                                <li key={item.cat_id} className={style.sep_box}>
+                                    <div className={style.sep_title}>
+                                        <h2>{item.title}</h2>
+                                        <i className="iconfont icon-icon_next_arrow"></i>
+                                    </div>
+                                    {
+                                        this.state.separationlist[index].list.map((item, index) =>
+                                            index === 0 ?
+                                                <div key={item.sche_id} className={style.sep_first} onClick={()=>{
+                                                    this.handleClick(item.sche_id)    
+                                                }}>
+                                                    <div className={style.img_box}>
+                                                        <img src={item.pic} alt="" className={style.img_imp} />
                                                     </div>
-                                                    <h3>{item.schedular_name}</h3>
-                                                    <span>{item.venue_name}</span>
-                                                </div>
-                                            </div> : null
-                                    )
-                                }
-                                <div className={style.sep_lt_box}>
-                                    <HotSwiper key={this.state.separationlist.length}>
-                                        {
-                                            this.state.separationlist[index].list.map((item, index) =>
-                                                index !== 0 ?
-                                                    <div key={item.sche_id} className="swiper-slide">
-                                                        <div className={style.swiper_box}>
-                                                            <div className={style.swiper_box_img}>
-                                                                <img src={item.pic} alt="" />
-                                                            </div>
-                                                            <h3>{item.schedular_name}</h3>
-                                                            <p><span>{item.low_price}</span>起</p>
+                                                    <div className={style.black}></div>
+                                                    <img src={item.pic} alt="" className={style.img_bg} />
+                                                    <div className={style.sep_font}>
+                                                        <div className={style.sep_data}>
+                                                            <p>{item.display_show_time}</p>
+                                                            <span>{item.week}</span>
                                                         </div>
+                                                        <h3>{item.schedular_name}</h3>
+                                                        <span>{item.venue_name}</span>
                                                     </div>
-                                                    : null
-                                            )
-                                        }
-                                    </HotSwiper>
-                                </div>
-                            </li>
-                        )
-                    }
-                </ul>
+                                                </div> : null
+                                        )
+                                    }
+                                    <div className={style.sep_lt_box}>
+                                        <HotSwiper key={this.state.separationlist.length}>
+                                            {
+                                                this.state.separationlist[index].list.map((item, index) =>
+                                                    index !== 0 ?
+                                                        <div key={item.sche_id} className="swiper-slide"
+                                                            onClick={()=>{
+                                                                this.handleClick(item.sche_id)    
+                                                            }}
+                                                        >
+                                                            <div className={style.swiper_box}>
+                                                                <div className={style.swiper_box_img}>
+                                                                    <img src={item.pic} alt="" />
+                                                                </div>
+                                                                <h3>{item.schedular_name}</h3>
+                                                                <p><span>{item.low_price}</span>起</p>
+                                                            </div>
+                                                        </div>
+                                                        : null
+                                                )
+                                            }
+                                        </HotSwiper>
+                                    </div>
+                                </li>
+                            )
+                        }
+                    </ul>
             }
             <h2 className={style.foryoutitle}>为你推荐</h2>
             <Masonry
-                className={'my-gallery-class'} // default ''
+                className={style.Masonry_box} // default ''
                 elementType={'ul'} // default 'div'
                 options={masonryOptions} // default {}
                 disableImagesLoaded={false} // default false

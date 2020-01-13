@@ -24,11 +24,6 @@ class MyNavbar extends Component{
 
     }
 
-    // componentDidMount() {
-      
-    // }
-    
-
     render(){
         return (
             <div>
@@ -45,7 +40,9 @@ class MyNavbar extends Component{
                         <input type="text" className="iconfont" placeholder="&#xebda;  搜索热门演出"/>
                     </div>
                     <div className={style.date}>
-                        <i className="iconfont icon-icon_calendar"></i>
+                        <i className="iconfont icon-icon_calendar" onClick={()=>{
+                            this.handleDateClick()   
+                        }}></i>
                     </div>
                 </div>
                 <div className={style.navbar_box}></div>
@@ -55,6 +52,9 @@ class MyNavbar extends Component{
     handleClick = () => {
         // console.log(this.props)
         this.props.history.push('/city')
+    }
+    handleDateClick = () => {
+        this.props.history.push('/date')
     }
 }
 

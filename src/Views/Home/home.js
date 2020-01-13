@@ -127,8 +127,8 @@ class Home extends Component {
     }
 
     render() {
-        const childElements = this.state.datalist.map(item =>
-            <li className={style.foryoulist} key={item.schedular_id} onClick={() => {
+        const childElements = this.state.datalist.map((item,index) =>
+            <li className={style.foryoulist} key={index} onClick={() => {
                 this.handleClick(item.schedular_id)
             }}>
                 <img src={item.pic} alt="" />
@@ -144,7 +144,7 @@ class Home extends Component {
                 <p className={style.pic}>¥{item.min_price}<i>起</i></p>
                 {
                     item.support_desc.map((item,index)=>
-                    <span key={index} className={style.type}>{item}</span>
+                    <p key={index} className={style.type}>{item}</p>
                     )
                 }
             </li>

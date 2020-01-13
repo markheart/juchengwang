@@ -1,8 +1,6 @@
 import React,{Component} from 'react'
 import {withRouter} from 'react-router'
 import style from './littlenavbar.module.scss'
-import { connect } from 'react-redux'
-import { showTabbar, hideTabbar } from '../../Redux/Actions/login'
 
 class LittleNavbar extends Component{
 

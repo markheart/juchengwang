@@ -45,7 +45,6 @@
       width: 1.72rem;
       margin-bottom: 0.05rem;
       margin-right: 0.05rem;
-      padding-bottom: 0.15rem;
       border-radius: 0.05rem;
       border: 1px solid #ededed;
       overflow: hidden;
@@ -110,6 +109,7 @@
         }
       }
       .type{
+        float: left;
         padding: 0.04rem 0.06rem;
         background: #fdf2f0;
         border-radius: 0.08rem;
@@ -117,7 +117,6 @@
         line-height: 0.18rem;
         color: #ef7859;
         margin-left: 0.13rem;
-        margin-right: 0.13rem;
         margin-bottom: 0.1rem;
         font-size: 0.11rem;
       }

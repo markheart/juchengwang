@@ -88,7 +88,7 @@ class ShowsLibrary extends Component {
           <p className={style.pic}>¥{item.min_price}<i>起</i></p>
           {
             item.support_desc.map((item,index)=>
-              <span key={index} className={style.type}>{item}</span>
+              <p key={index} className={style.type}>{item}</p>
             )
           }
     </li>
@@ -100,13 +100,13 @@ class ShowsLibrary extends Component {
           <div className={style.showsbar_box}>
             <ul className={style.showsbar_box_left}>
                 {
-                this.state.navlist.map((item,index)=>
-                    <li key={item.id} onClick={()=>{
-                      this.handleclick(item.id,index)
-                    }}
-                    className={this.state.current===index?style.active:''}
-                    >{item.name}</li>
-                )
+                  this.state.navlist.map((item,index)=>
+                      <li key={item.id} onClick={()=>{
+                        this.handleclick(item.id,index)
+                      }}
+                      className={this.state.current===index?style.active:''}
+                      >{item.name}</li>
+                  )
                 }
             </ul>
             <div className={style.choose_city}>

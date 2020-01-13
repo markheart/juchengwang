@@ -21,15 +21,37 @@ class Home extends Component {
         looplist: [],
         navlist: [],
         navlist2: [],
+        iconlist: [],
         hotlist: [],
         showlist: [],
         separationlist: [],
         sepfirstlist: [],
         cityname: '',
+        page: 1,
+        height: document.documentElement.clientHeight,
     }
 
-    componentDidMount() {
+    getnewdatalist = () => {
+        // console.log(document.body.offsetHeight - this.state.height - document.documentElement.scrollTop)
+        if (document.body.offsetHeight - this.state.height - document.documentElement.scrollTop <= 100) {
+          this.setState({
+            page: this.state.page + 1
+          })
+          Axios({
+            url: `https://api.juooo.com/Show/Search/getShowList?city_id=${this.props.match.params.cityid}&category=&keywords=&venue_id=&start_time=&page=${this.state.page}&referer_type=index&version=6.0.9&referer=2`
+          }).then(res => {
+            //   console.log(res.data)
+            this.setState({
+              datalist: [...this.state.datalist, ...res.data.data.list]
+            })
+          })
+        } else if (this.state.datalist.length === this.state.datatotal) {
+          window.removeEventListener('scroll', this.getnewdatalist)
+        }
+      }
 
+    componentDidMount() {
+        window.addEventListener('scroll', this.getnewdatalist);
     }
 
     UNSAFE_componentWillMount() {
@@ -58,11 +80,12 @@ class Home extends Component {
         // console.log(this.props.match.params.cityid)
         Axios.get(`https://api.juooo.com/home/index/getClassifyHome?city_id=${this.props.match.params.cityid}&abbreviation=&version=6.0.9&referer=2`)
             .then(res => {
-                // console.log(res.data.data.classify_list.slice(0,5))
+                // console.log(res.data.data.ad_list.float_ad)
                 this.setState({
                     looplist: res.data.data.slide_list,
                     navlist: res.data.data.classify_list.slice(0, 5),
-                    navlist2: res.data.data.classify_list.slice(5, 10)
+                    navlist2: res.data.data.classify_list.slice(5, 10),
+                    iconlist: res.data.data.ad_list.float_ad
                 })
             })
 
@@ -100,26 +123,41 @@ class Home extends Component {
                     })
                 }
             })
+            window.removeEventListener('scroll', this.getnewdatalist)
     }
 
     render() {
-        const childElements = this.state.datalist.map(item =>
-            <li className={style.foryoulist} key={item.schedular_id} onClick={() => {
+        const childElements = this.state.datalist.map((item,index) =>
+            <li className={style.foryoulist} key={index} onClick={() => {
                 this.handleClick(item.schedular_id)
             }}>
                 <img src={item.pic} alt="" />
-                <span>{item.city_name}</span>
-                <p>
+                <span className={style.city}>{item.city_name}</span>
+                <h3>
                     {
                         item.method_icon === '' ? null :
                             <img src={item.method_icon} alt="" />
                     }
                     {item.name}
-                </p>
+                </h3>
+                <p className={style.date}>{item.start_show_time}<i>{item.show_time_bottom}</i></p>
+                <p className={style.pic}>¥{item.min_price}<i>起</i></p>
+                {
+                    item.support_desc.map((item,index)=>
+                    <p key={index} className={style.type}>{item}</p>
+                    )
+                }
             </li>
 
         );
         return <div>
+            <div className={style.home_icon}>
+                {
+                    this.state.iconlist.map(item=>
+                        <img src={item.pic} alt="" key={item.ad_id}/>
+                    )
+                }
+            </div>
             <Navbar myCity={this.state.cityname}></Navbar>
             <div className={style.banner_box}>
                 {/* 这里是首页banner */}
@@ -301,6 +339,7 @@ class Home extends Component {
             >
                 {childElements}
             </Masonry>
+            <div className={style.navbarheight}></div>
         </div>;
     }
 

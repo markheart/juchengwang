@@ -1,6 +1,7 @@
 import React,{Component} from 'react'
 import {withRouter} from 'react-router'
 import style from './littlenavbar.module.scss'
+
 class LittleNavbar extends Component{
 
     componentDidMount() {

@@ -47,7 +47,6 @@ class Search extends Component {
     )
   }
   componentDidMount() {
-    console.log(this.props.searchdata)
   }
   showContent=()=>{
     //设置input输入,获取列表延迟,防抖....----------

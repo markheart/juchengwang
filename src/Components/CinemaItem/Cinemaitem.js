@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import style from './cinemaitem.module.scss'
 import MySwiper from '../Swiper/CinemaSwiper/CinemaSwiper'
 import { withRouter } from 'react-router-dom'
+import {gettitle} from '../../Redux/Actions/gettitle'
+import { connect } from 'react-redux'
 class Cinemaitem extends Component {
   //该页面获取cinema数据(this.props.data)
   render() {
@@ -19,7 +21,8 @@ class Cinemaitem extends Component {
             <span>{this.props.data.count}场在售演出</span>
           </p>
           <span className={style.morecont} onClick={() => {
-            this.tolistpage(this.props.data.vid) //点击title跳转也列表页,将id传送给列表页,动态路由
+            this.gettitleid(this.props.data.id) //点击title跳转也列表页,将id传送给列表页,动态路由
+            this.tolistpage(this.props.data.vid)
           }}>...</span>
         </h2>
         {/* -----------------------------swiper组件------------------------------------------ */}
@@ -59,7 +62,17 @@ class Cinemaitem extends Component {
   tolistpage = (listid) => {
     this.props.history.push(`/cinemalist/${listid}`)
   }
+
+  gettitleid=(titleid)=>{
+    this.props.gettitle(titleid)
+    console.log(titleid)
+  }
 }
 
-export default withRouter( Cinemaitem )
+const mapStateToProp = null
+const mapReducerToProps = {
+  gettitle
+}
+
+export default connect(mapStateToProp,mapReducerToProps)(withRouter( Cinemaitem ))
 

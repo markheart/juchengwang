@@ -5,6 +5,7 @@ import cinemaReducer from './cinemaReducer'
 import pageTitleReducer from './pageTitle'
 import searchReducer from './searchReducer'
 import DetailReducer from './detailreducer'
+import CinematitleReducer from './cinemtitleReducer'
 
 const reducer = combineReducers({
     tabbarReducer,
@@ -12,8 +13,8 @@ const reducer = combineReducers({
     pageTitleReducer,
     cinemaReducer,
     searchReducer,
-    DetailReducer
-    
+    DetailReducer,
+    CinematitleReducer
 })
     
 

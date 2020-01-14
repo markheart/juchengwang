@@ -15,7 +15,8 @@ class CinemaList extends Component {
     datalist: [],
     height: document.documentElement.clientHeight,
     searchdata:[],
-    page: 1
+    titlemsg:null,
+    page: 1,
   }
   //--------------------------------------------------懒加载------------------------------------------------------
   getnewdatalist = () => {
@@ -38,6 +39,12 @@ class CinemaList extends Component {
   }
   //--------------------------------------------------懒加载------------------------------------------------------
   componentDidMount() {
+    if(this.props.titleinfo){
+      localStorage.setItem("titleid",this.props.titleinfo)
+    }else{
+      //Do Nothing
+    }
+    let titleid = localStorage.getItem("titleid")
     this.props.showSearch()
     this.props.hideTabbar()
     let dataid = this.props.match.params.cinemaid
@@ -57,7 +64,15 @@ class CinemaList extends Component {
         searchdata:[...this.state.searchdata,...res.data.data]
       })
     })
+    Axios({
+      url:`https://api.juooo.com/theatre/index/getTheatreInfo?theatre_id=${titleid}&longitude=&latitude=&version=6.1.1&referer=2`
+    }).then(res=>{
+      this.setState({
+        titlemsg:{...this.state.titlemsg,...res.data.data}
+      })
+    })
     window.addEventListener('scroll', this.getnewdatalist); //监听滚动事件,且调用函数
+
   }
   // -------------------------瀑布流组件---------------------------------
 
@@ -70,6 +85,21 @@ class CinemaList extends Component {
     return (
       <div>
       {this.state.searchdata.length>0 ?<Searchbar searchdata={this.state.searchdata}/>:null}
+      {/* -----------------顶部剧院信息和定位 --------------------------*/}
+
+      {this.state.titlemsg?<div className={style.cinematitle} style={{background:`url(https://m.juooo.com/static/img/theater_detail_bg.png)`,backgroundSize:"100%"}}>
+          <div className={style.titlepic}>
+            <img src={this.state.titlemsg.theatre_pic} />
+            <div>
+              <h4>{this.state.titlemsg.theatre_name}</h4>
+              <p><span>{this.state.titlemsg.sch_num}</span>场在售演出</p>
+            </div>
+          </div>
+          <div className={style.cinemadress}><span>{this.state.titlemsg.city_name} |  {this.state.titlemsg.theatre_address}</span><a className={"iconfont icon-icon_gps_fill" +" "+style.cinemaposition} href={`https://apis.map.qq.com/tools/poimarker?type=0&marker=coord:${this.state.titlemsg.coordinate.substring(this.state.titlemsg.coordinate.indexOf(",")+1)},${this.state.titlemsg.coordinate.substring(0,this.state.titlemsg.coordinate.indexOf(","))};title:${this.state.titlemsg.city_name};addr:${this.state.titlemsg.theatre_address}&key=JVWBZ-RPFCX-EQ54H-T2UI4-AEXEQ-ABF3X&referer=jucengwang`}></a></div>
+      </div>:null}
+
+      {/* -----------------顶部剧院信息和定位 --------------------------*/}
+
       <Masonry
         className={style.cinemabox}
         elementType={'ul'} // default 'div'
@@ -86,15 +116,12 @@ class CinemaList extends Component {
     window.removeEventListener('scroll', this.getnewdatalist)
     this.props.showTabbar()
     this.props.hideSearch()
-    this.setState = (state, callback) => {
-      return;
-    };
   }
-
 }
 const mapStateToProp = (state)=>{
   return{
-    isSearcheShow:state.searchReducer
+    isSearcheShow:state.searchReducer,
+    titleinfo:state.CinematitleReducer
   }
 }
 const mapReducerToProps = {

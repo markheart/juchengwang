@@ -14,10 +14,16 @@
     }
     }
   .logincontent{
+    .yazhengma{
+      width: 0.7rem;
+      position: relative;
+      top:-0.4rem;
+      right: -2.46rem;
+    }
     input{
-      background-color: rgba($color: #000000, $alpha: 0);
       border: none;
       border-bottom: 1px solid #bbbbbb;
+      background-color: rgba($color: #000000, $alpha: 0);
       display: block;
       height:0.62rem ;
       width: 100%;
@@ -36,14 +42,5 @@
       font-size: 0.17rem;
       color: #fff;
     }
-  }
-  .register{
-    &:last-of-type{
-      margin-left: 2rem;
-    }
-    float: left;
-    margin-top: 0.4rem;
-    color: #808080;
-    font-size: 0.14rem;
   }
 }

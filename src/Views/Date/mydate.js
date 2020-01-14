@@ -116,7 +116,7 @@ class Test extends Component {
             }
             // new Date(str).toDateString() === new Date().toDateString()
             if (date.toDateString() === new Date().toDateString()) {
-                console.log(date.toDateString(), new Date().toDateString())
+                // console.log(date.toDateString(), new Date().toDateString())
                 dayObject.className = style.today
             }
             if (date.getDate() < new Date().getDate()) {
@@ -279,7 +279,7 @@ class Test extends Component {
                 })
             }
         )
-        console.log(this.state.dataNewStr)
+        // console.log(this.state.dataNewStr)
         // console.log(this.state.dataNewStr, 'datehandleclick')
         // console.log(this.state.dayList[aIndex].date)
 

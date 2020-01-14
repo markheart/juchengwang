@@ -3,6 +3,7 @@
     height: 0.42rem;
     display: flex;
     align-items: center;
+    background: #fff;
     .showsbar_box_left{
        display: flex;
        flex: 1;
@@ -40,6 +41,7 @@
 
 
     .calendar_header {
+        background: #fff;
         display: flex;
         justify-content: space-between;
         padding: 14px 12px; 
@@ -62,6 +64,7 @@
         min-height: 2.9rem;
         padding-bottom: 0.29rem;
         border-bottom: 1px solid #f8f8f9;
+        background: #fff;
         box-shadow: 0px 0px 5px 1px rgba(0, 0, 0, 0.2);
         overflow: hidden;
         .week_container {

@@ -37,9 +37,8 @@ class Register extends Component {
   changecode = () => {
     let element = document.getElementsByClassName('code')
     var array = []
-    console.log(element)
-    for (let i = 0; i < element.length; i++) {
-      if (element[i].value && i < element.length) {
+    for(let i=0;i<element.length;i++){
+      if(element[i].value && i<element.length ){
         array.push(element[i].value)
         if (i < element.length - 1) {
           element[i + 1].focus()
@@ -49,11 +48,8 @@ class Register extends Component {
       } else {
         //Do Nothing
       }
-      console.log(element[i])
     }
-    console.log(array)
-    if (array.length === 4) {
-      console.log("11111" + array)
+    if(array.length === 4){
       let str = array.join("")
       this.postreg(str)
     }
@@ -69,16 +65,15 @@ class Register extends Component {
       sms_code: codearray,
     })
     Axios({
-      url: "https://api.juooo.com/passport/login/index?version=6.1.1&referer=2",
-      method: 'post',
-      headers: {
-        "Content-Type": 'application/x-www-form-urlencoded; charset=UTF-8',
-      },
-      data
-    }).then(res => {
-      console.log(res.data)
-      if (res.data.code === "200") {
-        localStorage.setItem('juooo_app_token', res.data.data.token)
+    url:"https://api.juooo.com/passport/login/index?version=6.1.1&referer=2",
+    method:'post',
+    headers: {
+      "Content-Type":'application/x-www-form-urlencoded; charset=UTF-8',
+  },
+    data
+  }).then(res=>{
+      if(res.data.code === "200"){
+        localStorage.setItem('juooo_app_token',res.data.data.token)
         this.successToast()
         this.props.history.push(`/center`)
       } else if (res.data.code === "400") {

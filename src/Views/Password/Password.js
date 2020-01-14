@@ -40,7 +40,6 @@ class Register extends Component {
   },
     data
   }).then(res=>{
-    console.log(res.data)
       if(res.data.code === "200"){
         localStorage.setItem('juooo_app_token',res.data.data.token)
         this.successToast()

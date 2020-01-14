@@ -3,6 +3,8 @@ import style from './mydate.module.scss'
 import LittleNavbar from '../../Components/LittleNavbar/littlenavbar'
 import Axios from 'axios'
 import { withRouter } from 'react-router'
+import { showTabbar, hideTabbar } from '../../Redux/Actions/login'
+import { connect } from 'react-redux'
 
 class Test extends Component {
     constructor(props) {
@@ -35,7 +37,15 @@ class Test extends Component {
         this.nextMonth = this.nextMonth.bind(this);
     }
 
+    componentWillUnmount(){
+        this.props.showTabbar()
+        this.setState = (state, callback) => {
+            return;
+          };
+    }
+
     componentDidMount() {
+        this.props.hideTabbar()
         this.initCalendar()
         Axios.get('https://api.juooo.com/Show/Index/getShowCategoryList?version=6.0.9&referer=2')
             .then(res => {
@@ -279,4 +289,10 @@ class Test extends Component {
 }
 
 
-export default withRouter(Test)
+const mapStateToProps = null
+const mapDispatchToProps = {
+    showTabbar,
+    hideTabbar
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Test))

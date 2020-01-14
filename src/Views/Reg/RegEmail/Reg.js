@@ -40,7 +40,6 @@ class Register extends Component {
   },
     data
   }).then(res=>{
-    console.log(res.data)
       if(res.data.code === "200"){
         localStorage.setItem('register_token',res.data.data.register_token)
         this.props.history.push(`/password`)

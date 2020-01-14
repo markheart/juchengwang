@@ -53,7 +53,6 @@ class CinemaList extends Component {
     Axios({
       url:"https://api.juooo.com/Show/Search/getHotWord?version=6.0.9&referer=2"
     }).then(res=>{
-      console.log(res.data)
       this.setState({
         searchdata:[...this.state.searchdata,...res.data.data]
       })

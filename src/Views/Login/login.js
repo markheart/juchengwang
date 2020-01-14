@@ -46,7 +46,6 @@ class Login extends Component {
         this.successToast(res.data.msg)
         this.props.history.push(`/center/`)
       }else if(res.data.code === "400"){
-        console.log(res.data)
         this.failToast(res.data.msg)
       }
     })

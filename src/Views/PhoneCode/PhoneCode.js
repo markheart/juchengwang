@@ -37,7 +37,6 @@ class Register extends Component {
   changecode=()=>{
     let element = document.getElementsByClassName('code')
     var array = []
-    console.log(element)
     for(let i=0;i<element.length;i++){
       if(element[i].value && i<element.length ){
         array.push(element[i].value)
@@ -49,11 +48,8 @@ class Register extends Component {
       }else{
         //Do Nothing
       }
-      console.log(element[i])
     }
-    console.log(array)
     if(array.length === 4){
-      console.log("11111"+array)
       let str = array.join("")
       this.postreg(str)
     }
@@ -76,7 +72,6 @@ class Register extends Component {
   },
     data
   }).then(res=>{
-    console.log(res.data)
       if(res.data.code === "200"){
         localStorage.setItem('juooo_app_token',res.data.data.token)
         this.successToast()

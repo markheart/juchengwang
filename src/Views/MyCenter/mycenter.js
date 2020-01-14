@@ -16,19 +16,18 @@ class MyCenter extends Component {
               <span className={"iconfont icon-icon_setting" + " " + style.opction} onClick={this.toopciton}></span>
           </div>
               <ul className={style.infocontent}>
-                {console.log(this.state.userinfo)}
                 <li>
                   {this.state.userinfo?<img src={this.state.userinfo.basic_info.photo?this.state.userinfo.basic_info.photo:"https://m.juooo.com/static/img/logo-user.8413cbf.png"} />:null}
                 </li>
                 <li className={style.userid}>
                   <h4>
-    {this.state.userinfo?<div>{this.state.userinfo.is_login?this.state.userinfo.basic_info.email:<div onClick={this.register}>登录/注册</div>}</div>:null}
+    {this.state.userinfo?<div>{this.state.userinfo.is_login?this.state.userinfo.basic_info.email||this.state.userinfo.basic_info.nick_name:<div onClick={this.register}>登录/注册</div>}</div>:null}
                   </h4>
                   <div>
     {this.state.userinfo?<p>{this.state.userinfo.is_login?("ID:" + this.state.userinfo.basic_info.uid):<span onClick={this.register}>请点击登录 > </span>}</p>:null}
                   </div>
                 </li>
-                {this.state.userinfo?<li className={style.vip_info}>
+                {this.state.userinfo?<li className={style.vip_info} style={localStorage.getItem("juooo_app_token")?{background:"linear-gradient(-45deg, #f5dea9, #f8d583)"}:{backgroundColor:"#F5F5F5",color:"#b3b3b3"}}>
                   {this.state.userinfo.vip_info[0].vip_state?"高级会员":"普通会员"}
                 </li>:null}
                 <li>
@@ -62,12 +61,17 @@ class MyCenter extends Component {
     )
   }
   register=()=>{
-    this.props.history.push(`/login/`)
+    let token=localStorage.getItem("juooo_app_token")
+    if(token){
+      //Do Nothing
+    }else{
+      this.props.history.push(`/login/`)
+    }
   }
   loginpage=()=>{
     let token=localStorage.getItem("juooo_app_token")
     if(token){
-      this.props.history.push(`/center/`)
+      //Do Nothing
     }else{
       this.props.history.push(`/login/`)
     }

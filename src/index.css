@@ -51,7 +51,9 @@ img{
 input,button{
     outline: none;
 }  
-
+input:focus{
+    background: none;
+}
 /*解决高度塌陷*/
 .clear:after{
     content: ".";

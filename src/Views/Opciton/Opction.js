@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import Axios from 'axios'
 import Back from '../../Components/Back/Back'
 import style from './Opction.module.scss'
-export default class Opction extends Component {
+import { withRouter } from 'react-router-dom'
+class Opction extends Component {
   state={
     userinfo:null
   }
@@ -47,3 +48,5 @@ export default class Opction extends Component {
     this.props.history.push('/center')
   }
 }
+
+export default withRouter(Opction)

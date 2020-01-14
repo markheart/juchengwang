@@ -1,0 +1,62 @@
+#login{
+  padding:0 0.3rem;
+  .loginlogo{
+    position: relative;
+    height: 1.0rem;
+    width: 100%;
+    margin-bottom: 0.3rem;
+    img{
+      width: 1.5rem;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+    }
+  .logincontent{
+    .yazhengma{
+      width: 0.7rem;
+      position: relative;
+      top:-0.4rem;
+      right: -2.46rem;
+    }
+    h3{
+      margin-bottom: 0.4rem;
+      font-size: 0.2rem;
+    }
+    p{
+      font-size: 0.13rem;
+      color: #bbbbbb;
+    }
+    .codebox{
+      margin-top: 0.5rem;
+      input{
+        border: none;
+        border-bottom: 1px solid #bbbbbb;
+        background-color: rgba($color: #000000, $alpha: 0);
+        display: block;
+        height:0.62rem ;
+        width: 16%;
+        font-size: 0.16rem;
+        color: #7e7e7e;
+        float: left;
+        margin-left: 0.2rem;
+        text-align: center;
+        font-size: 0.16rem;
+        color: #ff9a34;
+      }
+    }
+    button{
+      width: 100%;
+      height: 0.5rem;
+      border-radius: 0.25rem;
+      line-height: 0.5rem;
+      border: none;
+      margin-top: 0.45rem;
+      background: linear-gradient(50deg, #ff9a34, #ff4d4a);
+      opacity:0.4;
+      font-size: 0.17rem;
+      color: #fff;
+    }
+  }
+}

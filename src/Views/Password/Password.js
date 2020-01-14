@@ -5,6 +5,9 @@ import Back from '../../Components/Back/Back'
 import style from './Password.module.scss'
 import Axios from 'axios'
 import Qs from 'qs'
+import { Toast } from 'antd-mobile';
+import 'antd-mobile/dist/antd-mobile.css'
+
 class Register extends Component {
   render() {
     return (
@@ -26,22 +29,36 @@ class Register extends Component {
       reg_from: 2,
       password:this.refs.password.value,
       confirm_password: this.refs.password.value,
+      register_token:localStorage.getItem("register_token"),
       email_code: this.refs.email_code.value,
 		})
     Axios({
     url:"https://api.juooo.com/passport/register/email?version=6.0.9&referer=2",
     method:'post',
     headers: {
-      "Content-Type":'application/x-www-form-urlencoded; charset=UTF-8'
+      "Content-Type":'application/x-www-form-urlencoded; charset=UTF-8',
   },
     data
   }).then(res=>{
+    console.log(res.data)
       if(res.data.code === "200"){
         localStorage.setItem('juooo_app_token',res.data.data.token)
+        this.successToast()
         this.props.history.push(`/center`)
+      }else if(res.data.code === "400"){
+        this.failToast(res.data.msg)
       }
     })
   }
+//登录成功弹框
+successToast=()=> {
+  Toast.success("注册成功", 1);
+}
+//登录失败弹框
+failToast=(msg)=> {
+  Toast.fail(msg, 1);
+}
+
   componentWillUnmount(){
     this.props.showTabbar()
   }

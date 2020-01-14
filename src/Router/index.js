@@ -18,8 +18,10 @@ import Eticket from '../Views/Eticket/eticket'
 import {Provider} from 'react-redux'
 import Store from '../Redux/store'
 import CinemaList from '../Views/CinemaList/CinemaList'
-import Register from '../Views/Reg/Reg'
+import RegisterEmail from '../Views/Reg/RegEmail/Reg'
+import RegisterPhone from '../Views/Reg/RegPhone/RegPhone'
 import Password from '../Views/Password/Password'
+import PhoneCode from '../Views/PhoneCode/PhoneCode'
 import Opction from '../Views/Opciton/Opction'
 
 const router = (
@@ -36,10 +38,14 @@ const router = (
           <Route path='/cinema' component={Cinema}/>
           <Route path='/center' component={MyCenter}/>
           <Route path='/login' component={Login}/>
-          <Route path='/register' component={Register}/>
+          <Route path='/register' component={RegisterEmail}/>
+          <Route path='/registerphone' component={RegisterPhone}/>
           <Route path='/password' component={Password}/>
+          <Route path='/phonecode/:phonenumber' component={PhoneCode}/>
           <Route path='/city' component={City}/>
-          <Route path='/opction' component={Opction} />
+          <Route path='/opction' render={()=>
+            localStorage.getItem('juooo_app_token')?<Opction />:<Redirect to='/login' />
+          } />
           <Route path='/date' component={MyDate}/>
           <Route path='/cinemalist/:cinemaid' component={CinemaList} exact/>
           <Route path='/detail/:myid' component={Detail} exact/>

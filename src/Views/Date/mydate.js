@@ -204,7 +204,9 @@ class Test extends Component {
                 <ul className={style.date_list}>
                     {
                         this.state.datelist.map((item, index) =>
-                            <li key={index}>
+                            <li key={index} onClick={()=>{
+                                this.toDetailClick(item.schedular_id)    
+                            }}>
                                 <div className={style.img_box}>
                                     <img src={item.pic} alt="" />
                                 </div>
@@ -285,6 +287,11 @@ class Test extends Component {
         //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F14&version=6.1.1&referer=2
         //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F15&page=1&version=6.1.1&referer=2
         //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F16&page=1&version=6.1.1&referer=2
+    }
+
+    toDetailClick = (id) => {
+        // console.log(this.props)
+        this.props.history.push(`/detail/${id}`)
     }
 }
 

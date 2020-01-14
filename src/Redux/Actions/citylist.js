@@ -12,15 +12,5 @@ export let getCityList = () => {
 
 }
 
-// export let getAllCityList = () => {
-//     return Axios.get(`https://api.juooo.com/city/city/getSortedCityList?version=6.0.9&referer=2`)
-//         .then(res=>{
-//             // console.log(res.data)
-//             return {
-//                 type: 'GET_AllCityListDate',
-//                 payload: res.data.data
-//             }
-//         })
 
-// }
 

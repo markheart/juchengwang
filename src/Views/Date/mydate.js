@@ -9,6 +9,7 @@ class Test extends Component {
         super(props);
         this.state = {
             navlist: [],
+            datelist: [],
             currentDay: '',
             currentMonth: '',
             currentYear: '',
@@ -21,7 +22,11 @@ class Test extends Component {
                 { name: '六', className: '' },
                 { name: '日', className: '' }
             ],
-            dayList: []
+            dayList: [],
+            current: 0,
+            navId: 35,
+            datecurrent: '',
+            dataNewStr: ''
         }
         this.initCalendar = this.initCalendar.bind(this);
         this.renderHeader = this.renderHeader.bind(this);
@@ -30,7 +35,8 @@ class Test extends Component {
         this.nextMonth = this.nextMonth.bind(this);
     }
 
-    componentWillMount() {
+    componentDidMount() {
+        this.initCalendar()
         Axios.get('https://api.juooo.com/Show/Index/getShowCategoryList?version=6.0.9&referer=2')
             .then(res => {
                 // console.log(res.data.data)
@@ -38,11 +44,15 @@ class Test extends Component {
                     navlist: res.data.data
                 })
             })
+        Axios.get(`https://api.juooo.com/Show/Search/getShowList?category=${this.state.navId}&city_id=0&start_time=${this.state.dataNewStr}&page=1&version=6.1.1&referer=1`)
+            .then(res => {
+                // console.log(res.data.data.list)
+                this.setState({
+                    datelist: res.data.data.list
+                })
+            })
     }
 
-    componentDidMount() {
-        this.initCalendar()
-    }
 
     // 获取当前date的当月第一天的字符串形式
     getMonthFirstDate(date) {
@@ -96,7 +106,14 @@ class Test extends Component {
             }
             // new Date(str).toDateString() === new Date().toDateString()
             if (date.toDateString() === new Date().toDateString()) {
+                console.log(date.toDateString(), new Date().toDateString())
                 dayObject.className = style.today
+            }
+            if (date.getDate() < new Date().getDate()) {
+                dayObject.className = style.notoday
+            }
+            if (date.getMonth() !== new Date().getMonth()) {
+                dayObject.className = style.notoday
             }
             newDateList.push(dayObject)
         }
@@ -106,23 +123,22 @@ class Test extends Component {
                 dayList: newDateList,
                 currentDay: nowDate.getDate(),
                 currentMonth: nowDate.getMonth() + 1 >= 10 ? nowDate.getMonth() + 1 : '0' + (nowDate.getMonth() + 1),
-                currentYear: nowDate.getFullYear(),
+                currentYear: nowDate.getFullYear()
             }
         })
-
     }
 
     renderHeader() {
         return (
             <div className={style.calendar_header}>
                 <div className={style.calendar_header_left}>
-                    <button onClick={this.preMonth}>上个月</button>
+                    <i className='iconfont icon-icon_left' onClick={this.preMonth}></i>
                 </div>
                 <div className=''>
                     {this.state.currentYear}年{this.state.currentMonth}月
                 </div>
                 <div className={style.calendar_header_right}>
-                    <button onClick={this.nextMonth}>下个月</button>
+                    <i className='iconfont icon-icon_next_arrow' onClick={this.nextMonth}></i>
                 </div>
             </div>
         )
@@ -138,7 +154,12 @@ class Test extends Component {
                 </div>
                 <div className={style.day_container}>
                     {this.state.dayList.map((dayObject, index) => {
-                        return <div key={index} className={`${style.day} ${dayObject.className}`}>{dayObject.day}</div>
+                        return <div key={index} className={`${style.day} ${dayObject.className}`}
+                            id={this.state.datecurrent === index ? style.active : ''}
+                            onClick={() => {
+                                this.datehandleclick(index)
+                            }}
+                        >{dayObject.day}</div>
                     })}
                 </div>
             </div>
@@ -170,7 +191,90 @@ class Test extends Component {
                     {this.renderHeader()}
                     {this.renderBody()}
                 </div>
+                <ul className={style.date_list}>
+                    {
+                        this.state.datelist.map((item, index) =>
+                            <li key={index}>
+                                <div className={style.img_box}>
+                                    <img src={item.pic} alt="" />
+                                </div>
+                                <div className={style.date_list_font}>
+                                    <p className={style.time}>
+                                        {item.start_show_time}
+                                        <span>
+                                            {item.show_time_bottom}
+                                        </span>
+                                    </p>
+                                    <h2>{item.name}</h2>
+                                    <p className={style.location}>
+                                        {item.city_name}
+                                        <span>
+                                            {item.venue_name}
+                                        </span>
+                                    </p>
+                                    <div className={style.isOk_box}>
+                                        {
+                                            item.support_desc.map((item, index) =>
+                                                <p key={index} className={style.isOk}>{item}</p>
+                                            )
+                                        }
+                                    </div>
+                                    <p className={style.pis}>
+                                        ¥{item.min_price}
+                                        <span>
+                                            起
+                                            </span>
+                                    </p>
+                                </div>
+                            </li>
+                        )
+                    }
+                </ul>
             </div>)
+    }
+
+    handleclick = (id, index) => {
+        // console.log(id)
+        this.setState({
+            current: index,
+            navId: id
+        }, () => {
+            Axios.get(`https://api.juooo.com/Show/Search/getShowList?category=${this.state.navId}&city_id=0&start_time=${this.state.dataNewStr}&page=1&version=6.1.1&referer=1`)
+                .then(res => {
+                    // console.log(res.data)
+                    this.setState({
+                        datelist: res.data.data.list
+                    })
+                })
+        }
+        )
+    }
+
+    datehandleclick = (aIndex) => {
+        var str = this.state.dayList[aIndex].date
+        var NewStr = str.replace(/-/gi, '/')
+        // console.log(encodeURIComponent(NewStr))
+        this.setState({
+            datecurrent: aIndex,
+            dataNewStr: encodeURIComponent(NewStr)
+        }, () => {
+            Axios.get(`https://api.juooo.com/Show/Search/getShowList?category=${this.state.navId}&city_id=0&start_time=${this.state.dataNewStr}&version=6.1.1&referer=2`)
+                .then(res => {
+                    // console.log(res.data)
+                    this.setState({
+                        datelist: res.data.data.list,
+                    })
+                })
+            }
+        )
+        console.log(this.state.dataNewStr)
+        // console.log(this.state.dataNewStr, 'datehandleclick')
+        // console.log(this.state.dayList[aIndex].date)
+
+
+        //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F14&version=6.1.1&referer=2
+        //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F15&page=1&version=6.1.1&referer=2
+        //https://api.juooo.com/Show/Search/getShowList?category=0&city_id=0&start_time=2020%2F1%2F16&page=1&version=6.1.1&referer=2
     }
 }
 

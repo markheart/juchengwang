@@ -43,6 +43,9 @@ class City extends Component {
 
     componentWillUnmount(){
         this.props.showTabbar()
+        this.setState = (state, callback) => {
+            return;
+          };
     }
 
     componentDidMount() {

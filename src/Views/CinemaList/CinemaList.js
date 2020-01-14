@@ -87,6 +87,9 @@ class CinemaList extends Component {
     window.removeEventListener('scroll', this.getnewdatalist)
     this.props.showTabbar()
     this.props.hideSearch()
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
 }

@@ -54,6 +54,10 @@ class Home extends Component {
         window.addEventListener('scroll', this.getnewdatalist);
     }
 
+    componentWillUnmount() {
+        window.removeEventListener('scroll', this.getnewdatalist)
+      }
+
     UNSAFE_componentWillMount() {
         //---------------为你推荐的数据-----------------
         //需要城市绑定功能，所以不可以放在redux中

@@ -49,7 +49,11 @@ class ShowsLibrary extends Component {
   }
 
   componentWillUnmount(){
+    window.removeEventListener('scroll', this.getnewdatalist)
     this.props.showTabbar()
+    this.setState = (state, callback) => {
+      return;
+    };
   }
 
   UNSAFE_componentWillMount() {

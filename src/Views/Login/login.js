@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import {connect} from 'react-redux'
-import {showTabbar,hideTabbar} from '../../Redux/Actions/login'
+import { connect } from 'react-redux'
+import { showTabbar, hideTabbar } from '../../Redux/Actions/login'
 import Back from '../../Components/Back/Back'
 import style from './login.module.scss'
 import Axios from 'axios'
@@ -26,13 +26,13 @@ class Login extends Component {
       </div>
     )
   }
-  postmesage=()=>{
-    var data =  Qs.stringify({
-      user_name:this.refs.user_name.value,
-      password:this.refs.password.value,
-      log_type:2,
-      reg_from:2, 
-		})
+  postmesage = () => {
+    var data = Qs.stringify({
+      user_name: this.refs.user_name.value,
+      password: this.refs.password.value,
+      log_type: 2,
+      reg_from: 2,
+    })
     Axios({
     url:"https://api.juooo.com/passport/login/index?version=6.0.9&referer=2",
     method:'post',
@@ -50,13 +50,13 @@ class Login extends Component {
       }
     })
   }
-  componentWillUnmount(){
+  componentWillUnmount() {
     this.props.showTabbar()
   }
   componentDidMount() {
     this.props.hideTabbar()
   }
-  toregister=()=>{
+  toregister = () => {
     this.props.history.push('/register')
   }
   toregisterPhone=()=>{
@@ -73,9 +73,9 @@ class Login extends Component {
 
 
 }
-const mapStateToProps=null
-const mapDispatchToProps={
+const mapStateToProps = null
+const mapDispatchToProps = {
   showTabbar,
   hideTabbar
 }
-export default connect(mapStateToProps,mapDispatchToProps)(Login)
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

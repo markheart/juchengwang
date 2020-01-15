@@ -101,6 +101,8 @@ getnewdatalist = () => {
 }
 //--------------------------------------------------懒加载------------------------------------------------------
 
+
+
 handelClick=(text)=>{
   this.refs.searchinfo.value = text
   this.gethotlist()

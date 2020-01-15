@@ -87,7 +87,7 @@ class CinemaList extends Component {
       {this.state.searchdata.length>0 ?<Searchbar searchdata={this.state.searchdata}/>:null}
       {/* -----------------顶部剧院信息和定位 --------------------------*/}
 
-      {this.state.titlemsg?<div className={style.cinematitle} style={{background:`url(https://m.juooo.com/static/img/theater_detail_bg.png)`,backgroundSize:"100%"}}>
+      {this.state.titlemsg && this.state.searchdata.length === 0?<div className={style.cinematitle} style={{background:`url(https://m.juooo.com/static/img/theater_detail_bg.png)`,backgroundSize:"100%"}}>
           <div className={style.titlepic}>
             <img src={this.state.titlemsg.theatre_pic} />
             <div>
